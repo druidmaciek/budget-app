@@ -1,0 +1,32 @@
+[
+    {
+        "model": "budgets.budget",
+        "pk": 1,
+        "fields": {
+            "created_at": "2022-01-07T14:07:13.540000Z",
+            "name": "My Family Budget",
+            "description": "This is our family budget",
+            "updated_at": "2022-01-07T14:07:13.540000Z"
+        }
+    },
+    {
+        "model": "budgets.budget",
+        "pk": 2,
+        "fields": {
+            "created_at": "2022-01-07T14:06:59.408000Z",
+            "name": "My Personal Budget",
+            "description": "This is my personal budget",
+            "updated_at": "2022-01-07T14:06:59.408000Z"
+        }
+    },
+    {
+        "model": "budgets.budget",
+        "pk": 3,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Gonçalves Budget",
+            "description": "Gonçalves Family Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z"
+        }
+    }
+]

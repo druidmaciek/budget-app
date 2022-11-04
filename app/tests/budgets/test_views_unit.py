@@ -1,7 +1,7 @@
 import pytest
 from django.http import Http404
 
-from budgets.views import BudgetSerializer, BudgetViewSet, Budget
+from budgets.views import BudgetSerializer, BudgetViewSet
 
 
 def test_add_budget(client, monkeypatch):
@@ -84,10 +84,15 @@ def test_update_budget(client, monkeypatch):
     monkeypatch.setattr(BudgetViewSet, "get_object", mock_get_object)
     monkeypatch.setattr(BudgetSerializer, "update", mock_update_object)
 
-    resp = client.put("/api/budgets/1/", payload, content_type="application/json",)
+    resp = client.put(
+        "/api/budgets/1/",
+        payload,
+        content_type="application/json",
+    )
     assert resp.status_code == 200
     assert resp.data["name"] == payload["name"]
     assert resp.data["description"] == payload["description"]
+
 
 def test_update_budget_incorrect_id(client, monkeypatch):
     def mock_get_object(pk):
@@ -109,5 +114,9 @@ def test_update_budget_invalid_json(client, monkeypatch, payload, status_code):
 
     monkeypatch.setattr(BudgetViewSet, "get_object", mock_get_object)
 
-    resp = client.put("/api/budgets/1/", payload, content_type="application/json",)
+    resp = client.put(
+        "/api/budgets/1/",
+        payload,
+        content_type="application/json",
+    )
     assert resp.status_code == status_code

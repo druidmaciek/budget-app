@@ -4,7 +4,7 @@ from rest_framework import routers
 from .views import BudgetViewSet
 
 router = routers.DefaultRouter()
-router.register(r'api/budgets', BudgetViewSet)
+router.register(r"api/budgets", BudgetViewSet)
 urlpatterns = [
-     path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

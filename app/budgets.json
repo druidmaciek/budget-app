@@ -60,7 +60,8 @@
             "name": "Gonçalves Budget",
             "description": "Gonçalves Family Budget",
             "updated_at": "2022-01-07T14:06:51.542000Z",
-            "owner": 3
+            "owner": 3,
+            "members": [1]
         }
     }
 ]

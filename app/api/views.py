@@ -3,6 +3,8 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
+from django.db.models import Q
+
 
 from .models import Budget
 from .serializers import BudgetSerializer, LogInSerializer, UserSerializer
@@ -22,4 +24,4 @@ class BudgetViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Budget.objects.filter(owner=self.request.user)
+        return self.request.user.all_user_budgets() #Budget.objects.filter(Q(owner=self.request.user) | Q())

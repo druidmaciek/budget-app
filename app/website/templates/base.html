@@ -3,9 +3,10 @@
 <head>
   <title>{% block title %}{% endblock %}</title>
 
-  <script src="https://unpkg.com/tailwindcss-jit-cdn" defer></script>
-  <script src=“https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js” defer></script>
-  <script src=“https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js” defer></script>
+  <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
 </head>
 <body class="">
 <div class="min-h-full">
@@ -46,7 +47,9 @@
   </div>
 </div>
 
+{% block alpine %}
 
+{% endblock %}
 
 
 </body>

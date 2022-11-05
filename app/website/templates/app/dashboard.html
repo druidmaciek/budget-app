@@ -2,4 +2,38 @@
 {% block title %}Dashboard{% endblock %}
 {% block content %}
   <p>Welcome to your dashboard <span class="text-red-500">✨{{ request.user.first_name|default:request.user.username|title }}✨</span></p>
+  <div x-data="budgets()" x-init="loadBudgets()">
+      <ul>
+        <template x-for="budget in budgets">
+          <li x-text="budget.name">ok</li>
+        </template>
+      </ul>
+  </div>
+{% endblock %}
+
+{% block alpine %}
+
+<script>
+  function budgets() {
+      return {
+          budgets: [],
+          loadBudgets() {
+            let self = this;
+            axios.get("api/budgets/")
+              .then(function (response) {
+                // handle success
+                self.budgets = response.data;
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              });
+          },
+          addBudget() {},
+          deleteBudget(budgetID) {},
+          updateBudget() {},
+      }
+  }
+</script>
+
 {% endblock %}

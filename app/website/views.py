@@ -1,5 +1,7 @@
-from django.views.generic.base import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 
-class HomePageView(TemplateView):
-    template_name = "home.html"
+@login_required
+def dashboard(request):
+    return render(request, "app/dashboard.html", {"section": "dashboard"})

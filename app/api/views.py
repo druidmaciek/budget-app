@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -18,4 +19,7 @@ class LogInView(TokenObtainPairView):
 
 class BudgetViewSet(ModelViewSet):
     serializer_class = BudgetSerializer
-    queryset = Budget.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Budget.objects.filter(owner=self.request.user)

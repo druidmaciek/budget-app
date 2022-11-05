@@ -1,21 +1,32 @@
-[   {
+[   
+    {
         "model": "api.customuser",
         "pk": 1,
         "fields": {
-            "username": "maciekjanowski@me.com",
-            "first_name": "Maciej",
-            "last_name": "Janowski",
-            "password": "Password123!"
+            "username": "test@email.com",
+            "first_name": "Test",
+            "last_name": "User",
+            "password": "pbkdf2_sha256$390000$7Jd4k7ikG9MIkitnPKvjVX$D9KdFVo4ds0uE1vErgx8KUvqKkCVkpB7eqRaLfAtrrw="
         }
     },
     {
         "model": "api.customuser",
         "pk": 2,
         "fields": {
+            "username": "maciekjanowski@me.com",
+            "first_name": "Maciej",
+            "last_name": "Janowski",
+            "password": "pbkdf2_sha256$390000$7Jd4k7ikG9MIkitnPKvjVX$D9KdFVo4ds0uE1vErgx8KUvqKkCVkpB7eqRaLfAtrrw="
+        }
+    },
+    {
+        "model": "api.customuser",
+        "pk": 3,
+        "fields": {
             "username": "adam@gmail.com",
             "first_name": "Adam",
             "last_name": "Gonçalves",
-            "password": "Password123!"
+            "password": "pbkdf2_sha256$390000$7Jd4k7ikG9MIkitnPKvjVX$D9KdFVo4ds0uE1vErgx8KUvqKkCVkpB7eqRaLfAtrrw="
         }
     },
     {
@@ -25,7 +36,9 @@
             "created_at": "2022-01-07T14:07:13.540000Z",
             "name": "My Family Budget",
             "description": "This is our family budget",
-            "updated_at": "2022-01-07T14:07:13.540000Z"
+            "updated_at": "2022-01-07T14:07:13.540000Z",
+            "owner": 1
+
         }
     },
     {
@@ -35,7 +48,8 @@
             "created_at": "2022-01-07T14:06:59.408000Z",
             "name": "My Personal Budget",
             "description": "This is my personal budget",
-            "updated_at": "2022-01-07T14:06:59.408000Z"
+            "updated_at": "2022-01-07T14:06:59.408000Z",
+            "owner": 1
         }
     },
     {
@@ -45,7 +59,8 @@
             "created_at": "2022-01-07T14:06:51.542000Z",
             "name": "Gonçalves Budget",
             "description": "Gonçalves Family Budget",
-            "updated_at": "2022-01-07T14:06:51.542000Z"
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 3
         }
     }
 ]

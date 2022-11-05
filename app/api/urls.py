@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 from .views import BudgetViewSet, LogInView, SignUpView
 
 router = routers.DefaultRouter()
-router.register(r"api/budgets", BudgetViewSet)
+router.register(r"api/budgets", BudgetViewSet, basename="budget")
 urlpatterns = [
     path("api/register/", SignUpView.as_view()),
     path("api/login/", LogInView.as_view()),

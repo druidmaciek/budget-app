@@ -4,6 +4,20 @@
   <title>{% block title %}{% endblock %}</title>
 
   <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+  <script type="module" >
+    import tailwindcssForms from 'https://cdn.skypack.dev/@tailwindcss/forms';
+    
+    window.tailwindConfig = {
+      plugins: [
+        tailwindcssForms,
+      ]
+    };
+    
+    window.tailwindCSS.refresh();
+    </script>
+    <script type="tailwind-config">
+    window.tailwindConfig
+    </script>
   <script src="//unpkg.com/alpinejs" defer></script>
   <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 

@@ -4,7 +4,24 @@
   <p>Welcome to your dashboard <span class="text-red-500">✨{{ request.user.first_name|default:request.user.username|title }}✨</span></p>
  
   <div x-data="budgets()" x-init="loadBudgets()">
-    <h2 class="text-sm font-medium text-gray-500">Budgets</h2>
+    <div class="flex justify-start items-center space-x-4">
+    <div class="mt-4 flex items-center">
+      <!-- Enabled: "bg-yellow-600", Not Enabled: "bg-gray-200" -->
+      <button @click="only_mine = !only_mine" type="button" 
+      :class="{ 'bg-yellow-600': only_mine, 'bg-gray-200': !only_mine}"
+      class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="annual-billing-label">
+        <span aria-hidden="true"
+        :class="{'translate-x-5': only_mine, 'translate-x-0': !only_mine}"
+        class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+      </button>
+      <span class="ml-3" id="annual-billing-label">
+        <span class="text-sm font-medium text-gray-900">Show Only Budgets Owned by Me</span>
+      </span>
+    </div>
+
+  </div>
+
+    
     <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
       <template x-for="budget in budgets">
       <li class="col-span-1 flex rounded-md shadow-sm">
@@ -19,6 +36,10 @@
     </template>
 
     </ul>
+    <div class="mt-4 flex flex-1 justify-between sm:justify-start">
+      <button @click="changePage(-1)" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</button>
+      <button @click="changePage(1)" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</button>
+    </div>
   </div>
   
 {% endblock %}
@@ -26,15 +47,37 @@
 {% block alpine %}
 
 <script>
+  const pageSize = 2;
+  const calculatePagesCount = (totalCount) => {
+    // we suppose that if we have 0 items we want 1 empty page
+    return totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize);
+  };
   function budgets() {
       return {
+          only_mine: false,
+          page: 1,
+          count: 0,
+          changePage(page) {
+            let totalPage = calculatePagesCount(this.count);
+            let new_page = this.page + page;
+            if (new_page <= 1) {
+              this.page = 1;
+            } else if (new_page >= totalPage) {
+              this.page = totalPage;
+            } else {
+              this.page = new_page;
+            }
+            this.loadBudgets();
+
+          },
           budgets: [],
           loadBudgets() {
             let self = this;
-            axios.get("api/budgets/")
+            axios.get(`api/budgets/?page=${this.page}`)
               .then(function (response) {
                 // handle success
                 self.budgets = response.data.results;
+                self.count = response.data.count;
               })
               .catch(function (error) {
                 // handle error

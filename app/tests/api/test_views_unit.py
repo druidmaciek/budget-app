@@ -1,7 +1,7 @@
 import pytest
 from django.http import Http404
 
-from budgets.views import BudgetSerializer, BudgetViewSet
+from api.views import BudgetSerializer, BudgetViewSet
 
 
 def test_add_budget(client, monkeypatch):

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_yasg",
-    "budgets",
+    "api",
 ]
 
 MIDDLEWARE = [
@@ -130,7 +130,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "budgets.CustomUser"
+AUTH_USER_MODEL = "api.CustomUser"
 
 
 REST_FRAMEWORK = {

@@ -1,6 +1,6 @@
 import pytest
 
-from budgets.serializers import BudgetSerializer, UserSerializer
+from api.serializers import BudgetSerializer, UserSerializer
 
 
 def test_valid_budget_serializer():

@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth import get_user_model
 
-from budgets.models import Budget
+from api.models import Budget
 
 
 @pytest.fixture(scope="function")

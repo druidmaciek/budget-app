@@ -1,6 +1,6 @@
 import pytest
 
-from budgets.models import Budget
+from api.models import Budget
 
 
 @pytest.mark.django_db

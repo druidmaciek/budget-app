@@ -80,7 +80,7 @@
           budgets: [],
           loadBudgets() {
             let self = this;
-            let url = `api/budgets/?page=${this.page}`
+            let url = `/api/budgets/?page=${this.page}`
             if (this.only_mine == true) {
               url += "&owner={{ request.user.id }}"
             }
@@ -95,9 +95,6 @@
                 console.log(error);
               });
           },
-          addBudget() {},
-          deleteBudget(budgetID) {},
-          updateBudget() {},
       }
   }
 </script>

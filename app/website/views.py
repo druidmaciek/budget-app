@@ -31,3 +31,7 @@ def add_budget(request):
     return render(
         request, "app/budget/form.html", {"users": get_user_model().objects.all()}
     )
+
+@login_required
+def budget_detail(request, pk):
+    return render(request, "app/budget/detail.html", {'id': pk})

@@ -1,10 +1,11 @@
 from django.urls import include, path
 
-from .views import dashboard, register, add_budget
+from .views import dashboard, register, add_budget, budget_detail
 
 urlpatterns = [
     path("", include("django.contrib.auth.urls")),
     path("", dashboard, name="dashboard"),
     path("register/", register, name="register"),
     path("budget/add/", add_budget, name="add_budget"),
+    path("budget/<int:pk>/", budget_detail, name="budget_detail"),
 ]

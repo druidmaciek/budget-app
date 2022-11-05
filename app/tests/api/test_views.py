@@ -4,7 +4,9 @@ from api.models import Budget
 
 
 @pytest.mark.django_db
-def test_add_budget(client):
+def test_add_budget(client, add_user):
+    user = add_user()
+    client.force_login(user)
     budgets = Budget.objects.all()
     assert len(budgets) == 0
 
@@ -13,11 +15,13 @@ def test_add_budget(client):
         {
             "name": "My Family Budget",
             "description": "Our Budget",
+            "owner": user.id,
         },
         content_type="application/json",
     )
     assert response.status_code == 201
     assert response.data["name"] == "My Family Budget"
+    assert response.data["owner"] == user.id
 
     budgets = Budget.objects.all()
     assert len(budgets) == 1
@@ -25,13 +29,15 @@ def test_add_budget(client):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "payload",
+    "payload, add_user",
     [
-        {},
-        {"description": "description"},
+        [{}, "add_user"],
+        [{"description": "description"}, "add_user"],
     ],
+    indirect=["add_user"],
 )
-def test_add_budget_invalid_json(client, payload):
+def test_add_budget_invalid_json(client, payload, add_user):
+    client.force_login(add_user())
     budgets = Budget.objects.all()
     assert len(budgets) == 0
 
@@ -49,29 +55,39 @@ def test_add_budget_invalid_json(client, payload):
 @pytest.mark.django_db
 def test_get_single_budget(client, add_budget):
     budget = add_budget(name="My Family Budget", description="my budget")
+    client.force_login(budget.owner)
     response = client.get(f"/api/budgets/{budget.id}/")
     assert response.status_code == 200
     assert response.data["name"] == "My Family Budget"
 
 
-def test_get_single_budget_incorrect_id(client):
+@pytest.mark.django_db
+def test_get_single_budget_incorrect_id(client, add_user):
+    client.force_login(add_user())
     response = client.get("/api/budgets/incorrect/")
     assert response.status_code == 404
 
 
 @pytest.mark.django_db
-def test_get_all_budgets(client, add_budget):
-    budget_one = add_budget(name="My Family Budget", description="our budget")
-    budget_two = add_budget(name="My Personal Budget", description="my budget")
+def test_get_all_budgets(client, add_budget, add_user):
+    user = add_user()
+    client.force_login(user)
+    budget_one = add_budget(
+        name="My Family Budget", description="our budget", owner=user
+    )
+    budget_two = add_budget(
+        name="My Personal Budget", description="my budget", owner=user
+    )
     response = client.get("/api/budgets/")
     assert response.status_code == 200
-    assert response.data[0]["name"] == budget_one.name
-    assert response.data[1]["name"] == budget_two.name
+    assert response.data["results"][0]["name"] == budget_one.name
+    assert response.data["results"][1]["name"] == budget_two.name
 
 
 @pytest.mark.django_db
 def test_remove_budget(client, add_budget):
     budget = add_budget(name="My Family Budget", description="our budget")
+    client.force_login(budget.owner)
 
     response = client.get(f"/api/budgets/{budget.id}/")
     assert response.status_code == 200
@@ -82,22 +98,29 @@ def test_remove_budget(client, add_budget):
 
     response_three = client.get("/api/budgets/")
     assert response_three.status_code == 200
-    assert len(response_three.data) == 0
+    assert len(response_three.data["results"]) == 0
 
 
 @pytest.mark.django_db
-def test_remove_budget_incorrect_id(client):
+def test_remove_budget_incorrect_id(client, add_user):
+    client.force_login(add_user())
     response = client.delete("/api/budgets/incorrect/")
     assert response.status_code == 404
 
 
 @pytest.mark.django_db
 def test_update_budget(client, add_budget):
-    budget = add_budget(name="My Family Budget", description="our budget")
 
+    budget = add_budget(name="My Family Budget", description="our budget")
+    client.force_login(budget.owner)
     response = client.put(
         f"/api/budgets/{budget.id}/",
-        {"name": "Our Family Budget", "description": "our budget"},
+        {
+            "name": "Our Family Budget",
+            "description": "our budget",
+            "owner": budget.owner.id,
+            "members": [],
+        },
         content_type="application/json",
     )
     assert response.status_code == 200
@@ -111,7 +134,8 @@ def test_update_budget(client, add_budget):
 
 
 @pytest.mark.django_db
-def test_update_budget_incorrect_id(client):
+def test_update_budget_incorrect_id(client, add_user):
+    client.force_login(add_user())
     response = client.put("/api/budgets/incorrect/")
     assert response.status_code == 404
 
@@ -127,6 +151,7 @@ def test_update_budget_incorrect_id(client):
 )
 def test_update_budget_invalid_json(client, add_budget, payload, status_code):
     budget = add_budget(name="My Family Budget", description="our budget")
+    client.force_login(budget.owner)
     response = client.put(
         f"/api/budgets/{budget.id}/", payload, content_type="application/json"
     )

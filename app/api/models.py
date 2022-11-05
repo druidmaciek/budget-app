@@ -1,5 +1,3 @@
-from itertools import chain
-
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -7,7 +5,7 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     def all_user_budgets(self):
-        return list(chain(self.owned_budgets.all(), self.user_budgets.all()))
+        return self.owned_budgets.all() | self.user_budgets.all()
 
 
 class Budget(models.Model):
@@ -16,7 +14,9 @@ class Budget(models.Model):
     owner = models.ForeignKey(
         get_user_model(), related_name="owned_budgets", on_delete=models.CASCADE
     )
-    members = models.ManyToManyField(get_user_model(), related_name="user_budgets")
+    members = models.ManyToManyField(
+        get_user_model(), related_name="user_budgets", blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -28,7 +28,7 @@ class Budget(models.Model):
         return self.members.count() + 1
 
 
-class TransactionBaseModel(models.Model):
+class Transaction(models.Model):
     CATEGORIES = (
         ("taxes", "Taxes"),
         ("eating out", "Eating Out"),
@@ -38,21 +38,17 @@ class TransactionBaseModel(models.Model):
         ("other income", "Other Income"),
         ("salary", "Salary"),
     )
-    budget = models.ForeignKey(Budget, related_name="inc/exp", on_delete=models.CASCADE)
+    TYPES = (("expense", "Expense"), ("income", "Income"))
+    budget = models.ForeignKey(
+        Budget, related_name="transactions", on_delete=models.CASCADE
+    )
+    name = models.CharField(max_length=255)
     amount = models.IntegerField()
     category = models.CharField(max_length=32, choices=CATEGORIES)
+    type = models.CharField(max_length=7, choices=TYPES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        abstract = True
-
-
-class Income(models.Model):
-    @staticmethod
-    def get_budget_related_name():
-        return "incomes"
-
-
-class Expense(models.Model):
-    @staticmethod
-    def get_budget_related_name():
-        return "expenses"
+    def __str__(self):
+        expense_type = "-" if self.type == "expense" else "+"
+        return f"{self.name} ({expense_type}{(self.amount/100):.2f})"

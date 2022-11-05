@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import Budget
+from .models import Budget, Transaction
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -58,4 +58,15 @@ class BudgetSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "members_count",
+        )
+
+
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = "__all__"
+        read_only_fields = (
+            "id",
+            "created_at",
+            "updated_at",
         )

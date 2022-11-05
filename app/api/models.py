@@ -25,7 +25,8 @@ class Budget(models.Model):
 
     @property
     def members_count(self):
-        return self.members.count() + 1
+        count = self.members.count() + 1
+        return f"{count} member{'s' if count != 1 else ''}"
 
 
 class Transaction(models.Model):

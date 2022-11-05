@@ -43,17 +43,14 @@ def test_invalid_transaction_serializer(add_budget):
 
 @pytest.mark.django_db
 def test_valid_budget_serializer(add_user):
-    user = add_user()
     valid_serializer_data = {
         "name": "My Family Budget",
         "description": "This is our budget",
-        "owner": user.id,
         "members": [],
     }
     serializer = BudgetSerializer(data=valid_serializer_data)
     assert serializer.is_valid()
     assert serializer.validated_data["members"] == []
-    assert serializer.validated_data["owner"].id == user.id
     assert serializer.validated_data["name"] == "My Family Budget"
     assert serializer.validated_data["description"] == "This is our budget"
     assert serializer.data == valid_serializer_data
@@ -62,10 +59,8 @@ def test_valid_budget_serializer(add_user):
 
 @pytest.mark.django_db
 def test_invalid_budget_serializer(add_user):
-    user = add_user()
     invalid_serializer_data = {
         "description": "This is our budget",
-        "owner": user.id,
     }
     serializer = BudgetSerializer(data=invalid_serializer_data)
     assert not serializer.is_valid()

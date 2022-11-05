@@ -7,7 +7,7 @@
     <div class="flex justify-start items-center space-x-4">
     <div class="mt-4 flex items-center">
       <!-- Enabled: "bg-yellow-600", Not Enabled: "bg-gray-200" -->
-      <button @click="only_mine = !only_mine" type="button" 
+      <button @click="only_mine = !only_mine;page=1;loadBudgets()" type="button" 
       :class="{ 'bg-yellow-600': only_mine, 'bg-gray-200': !only_mine}"
       class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="annual-billing-label">
         <span aria-hidden="true"
@@ -27,9 +27,10 @@
       <li class="col-span-1 flex rounded-md shadow-sm">
         <div class="flex-shrink-0 flex items-center justify-center w-16 bg-red-400 text-white text-xl font-medium rounded-l-md">💰</div>
         <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
-          <div class="flex-1 px-4 py-2 text-sm">
+          <div class="flex-1 px-4 py-2 text-sm truncate">
             <a x-text="budget.name" href="#" class="font-medium text-gray-900 hover:text-gray-600"></a>
-            <p class="text-gray-500">16 Members</p>
+            <p class="text-gray-500" x-text="'Owner: ' + budget.owner.username"></p>
+            <p class="text-gray-500" x-text="budget.members_count"></p>
           </div>
         </div>
       </li>
@@ -47,7 +48,7 @@
 {% block alpine %}
 
 <script>
-  const pageSize = 2; # TODO change later, hide next/prev buttons when there is no pages
+  const pageSize = 4; // TODO change later, hide next/prev buttons when there is no pages
   const calculatePagesCount = (totalCount) => {
     // we suppose that if we have 0 items we want 1 empty page
     return totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize);
@@ -73,7 +74,11 @@
           budgets: [],
           loadBudgets() {
             let self = this;
-            axios.get(`api/budgets/?page=${this.page}`)
+            let url = `api/budgets/?page=${this.page}`
+            if (this.only_mine == true) {
+              url += "&owner={{ request.user.id }}"
+            }
+            axios.get(url)
               .then(function (response) {
                 // handle success
                 self.budgets = response.data.results;

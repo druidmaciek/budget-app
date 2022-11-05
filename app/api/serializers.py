@@ -48,7 +48,8 @@ class LogInSerializer(TokenObtainPairSerializer):
 
 
 class BudgetSerializer(serializers.ModelSerializer):
-    members_count = serializers.IntegerField(read_only=True)
+    members_count = serializers.CharField(read_only=True)
+    owner = UserSerializer(read_only=True)
 
     class Meta:
         model = Budget
@@ -58,6 +59,7 @@ class BudgetSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "members_count",
+            "owner",
         )
 
 

@@ -21,7 +21,7 @@ def test_add_budget(client, add_user):
     )
     assert response.status_code == 201
     assert response.data["name"] == "My Family Budget"
-    assert response.data["owner"] == user.id
+    assert response.data["owner"]["id"] == user.id
 
     budgets = Budget.objects.all()
     assert len(budgets) == 1

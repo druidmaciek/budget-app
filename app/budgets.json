@@ -63,5 +63,89 @@
             "owner": 3,
             "members": [1]
         }
+    },
+    {
+        "model": "api.budget",
+        "pk": 4,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Company Budget",
+            "description": "Our Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 1,
+            "members": []
+        }
+    },
+    {
+        "model": "api.budget",
+        "pk": 5,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Winter Vacation 2022 Budget",
+            "description": "Our Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 1,
+            "members": []
+        }
+    },
+    {
+        "model": "api.budget",
+        "pk": 6,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Summer Vacation 2021 Budget",
+            "description": "Our Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 1,
+            "members": []
+        }
+    },
+    {
+        "model": "api.budget",
+        "pk": 7,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Winter 2021 Vacation Budget",
+            "description": "Our Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 1,
+            "members": []
+        }
+    },
+    {
+        "model": "api.budget",
+        "pk": 8,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Trip to Rome  Budget",
+            "description": "Our Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 1,
+            "members": []
+        }
+    },
+    {
+        "model": "api.budget",
+        "pk": 9,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Summer Vacation 2021 Budget",
+            "description": "Our Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 1,
+            "members": []
+        }
+    },
+    {
+        "model": "api.budget",
+        "pk": 10,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "School Trip Budget",
+            "description": "Our Budget",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "owner": 1,
+            "members": []
+        }
     }
 ]

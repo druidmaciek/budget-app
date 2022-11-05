@@ -4,11 +4,6 @@ from django.shortcuts import render
 from .forms import UserRegistrationForm
 
 
-@login_required
-def dashboard(request):
-    return render(request, "app/dashboard.html", {"section": "dashboard"})
-
-
 def register(request):
     if request.method == "POST":
         user_form = UserRegistrationForm(request.POST)
@@ -22,3 +17,12 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, "registration/register.html", {"user_form": user_form})
+
+
+@login_required
+def dashboard(request):
+    return render(request, "app/dashboard.html")
+
+@login_required
+def add_budget(request):
+    return render(request, "app/budget/form.html")

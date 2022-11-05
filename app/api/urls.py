@@ -7,6 +7,7 @@ from .views import BudgetViewSet, LogInView, SignUpView
 router = routers.DefaultRouter()
 router.register(r"api/budgets", BudgetViewSet, basename="budgets")
 
+
 urlpatterns = [
     path("", include(router.urls)),
     path("api/register/", SignUpView.as_view()),

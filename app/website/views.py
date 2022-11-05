@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.contrib.auth import get_user_model
+
 
 from .forms import UserRegistrationForm
 
@@ -23,6 +25,9 @@ def register(request):
 def dashboard(request):
     return render(request, "app/dashboard.html")
 
+
 @login_required
 def add_budget(request):
-    return render(request, "app/budget/form.html")
+    return render(
+        request, "app/budget/form.html", {"users": get_user_model().objects.all()}
+    )

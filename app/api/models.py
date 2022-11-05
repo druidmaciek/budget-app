@@ -5,7 +5,8 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     def all_user_budgets(self):
-        return self.owned_budgets.all() | self.user_budgets.all()
+        qs = self.owned_budgets.all() | self.user_budgets.all().order_by("-updated_at")
+        return qs
 
 
 class Budget(models.Model):

@@ -1,7 +1,6 @@
 import pytest
 
-from api.serializers import (BudgetSerializer, TransactionSerializer,
-                             UserSerializer)
+from api.serializers import BudgetSerializer, TransactionSerializer, UserSerializer
 
 
 @pytest.mark.django_db

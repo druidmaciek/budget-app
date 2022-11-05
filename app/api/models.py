@@ -6,7 +6,6 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    
     def all_user_budgets(self):
         return list(chain(self.owned_budgets.all(), self.user_budgets.all()))
 
@@ -27,6 +26,7 @@ class Budget(models.Model):
     @property
     def members_count(self):
         return self.members.count() + 1
+
 
 class TransactionBaseModel(models.Model):
     CATEGORIES = (

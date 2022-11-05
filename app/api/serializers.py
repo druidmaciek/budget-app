@@ -49,6 +49,7 @@ class LogInSerializer(TokenObtainPairSerializer):
 
 class BudgetSerializer(serializers.ModelSerializer):
     members_count = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Budget
         fields = "__all__"

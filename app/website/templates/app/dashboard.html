@@ -34,7 +34,7 @@
             axios.get("api/budgets/")
               .then(function (response) {
                 // handle success
-                self.budgets = response.data;
+                self.budgets = response.data.results;
               })
               .catch(function (error) {
                 // handle error

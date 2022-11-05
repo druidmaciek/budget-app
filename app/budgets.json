@@ -1,4 +1,23 @@
-[
+[   {
+        "model": "budgets.customuser",
+        "pk": 1,
+        "fields": {
+            "username": "maciekjanowski@me.com",
+            "first_name": "Maciej",
+            "last_name": "Janowski",
+            "password": "Password123!"
+        }
+    },
+    {
+        "model": "budgets.customuser",
+        "pk": 2,
+        "fields": {
+            "username": "adam@gmail.com",
+            "first_name": "Adam",
+            "last_name": "Gonçalves",
+            "password": "Password123!"
+        }
+    },
     {
         "model": "budgets.budget",
         "pk": 1,

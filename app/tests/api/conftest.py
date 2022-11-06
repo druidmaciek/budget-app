@@ -42,5 +42,13 @@ def add_budget():
 @pytest.fixture(scope="function")
 def add_transaction():
     def _add_transaction(name, type, category, budget, amount):
-        return Transaction.objects.create(name=name, type=type, category=category, budget=budget, amount=amount, owner=budget.owner)
+        return Transaction.objects.create(
+            name=name,
+            type=type,
+            category=category,
+            budget=budget,
+            amount=amount,
+            owner=budget.owner,
+        )
+
     return _add_transaction

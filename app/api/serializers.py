@@ -76,4 +76,3 @@ class TransactionSerializer(serializers.ModelSerializer):
             "updated_at",
             "owner",
         )
-    

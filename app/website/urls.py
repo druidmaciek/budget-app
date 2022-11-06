@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from .views import dashboard, register, add_budget, budget_detail
+from .views import add_budget, budget_detail, dashboard, register
 
 urlpatterns = [
     path("", include("django.contrib.auth.urls")),

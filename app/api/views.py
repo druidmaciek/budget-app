@@ -1,15 +1,15 @@
 from django.contrib.auth import get_user_model
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 from rest_framework.generics import CreateAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.filters import SearchFilter
 
-
-from .serializers import BudgetSerializer, LogInSerializer, UserSerializer, TransactionSerializer
-from .models import Transaction, Budget
+from .models import Transaction
+from .serializers import (BudgetSerializer, LogInSerializer,
+                          TransactionSerializer, UserSerializer)
 
 
 class SignUpView(CreateAPIView):
@@ -40,6 +40,7 @@ class BudgetViewSet(ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+
 class TransactionsResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
@@ -52,11 +53,11 @@ class TransactionViewSet(ModelViewSet):
     pagination_class = TransactionsResultsSetPagination
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ["type", "category", "budget"]
-    search_fields = ['name']
+    search_fields = ["name"]
 
     def get_queryset(self):
         return Transaction.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
-        budget = serializer.validated_data['budget']
+        budget = serializer.validated_data["budget"]
         serializer.save(owner=budget.owner)

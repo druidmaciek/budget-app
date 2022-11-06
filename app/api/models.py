@@ -29,11 +29,10 @@ class Budget(models.Model):
     def members_count(self):
         count = self.members.count() + 1
         return f"{count} member{'s' if count != 1 else ''}"
-    
-    @property 
-    def balance(self) -> int:
-        return self.transactions.aggregate(Sum('amount'))['amount__sum']
 
+    @property
+    def balance(self) -> int:
+        return self.transactions.aggregate(Sum("amount"))["amount__sum"]
 
 
 class Transaction(models.Model):
@@ -57,9 +56,7 @@ class Transaction(models.Model):
     type = models.CharField(max_length=7, choices=TYPES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey(
-        get_user_model(), on_delete=models.CASCADE
-    )
+    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} ({(self.amount/100):.2f})"

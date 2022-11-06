@@ -2,6 +2,7 @@ import pytest
 
 from api.models import Transaction
 
+
 @pytest.mark.django_db
 def test_add_transaction(client, add_user, add_budget):
     user = add_user()
@@ -37,12 +38,14 @@ def test_add_transaction(client, add_user, add_budget):
 def test_get_all_transactions(client, add_budget, add_user, add_transaction):
     user = add_user()
     client.force_login(user)
-    budget = add_budget(
-        name="My Family Budget", description="our budget", owner=user
+    budget = add_budget(name="My Family Budget", description="our budget", owner=user)
+    transaction_one = add_transaction(
+        name="rent", type="expense", category="rent", budget=budget, amount=-200000
     )
-    transaction_one = add_transaction(name="rent", type="expense", category="rent", budget=budget, amount=-200000)
-    transaction_two = add_transaction(name="salary", type="income", category="salary", budget=budget, amount=500000)
-    
+    transaction_two = add_transaction(
+        name="salary", type="income", category="salary", budget=budget, amount=500000
+    )
+
     response = client.get("/api/transactions/")
     assert response.status_code == 200
     assert response.data["results"][0]["name"] == transaction_one.name

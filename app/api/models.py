@@ -50,6 +50,9 @@ class Transaction(models.Model):
     type = models.CharField(max_length=7, choices=TYPES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE
+    )
 
     def __str__(self):
         expense_type = "-" if self.type == "expense" else "+"

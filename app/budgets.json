@@ -147,5 +147,31 @@
             "owner": 1,
             "members": []
         }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 1,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Salary",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "salary",
+            "type": "income",
+            "amount": 1000000
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 2,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Rent",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "Rent",
+            "type": "expense",
+            "amount": 200000
+        }
     }
 ]

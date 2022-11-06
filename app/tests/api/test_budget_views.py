@@ -80,8 +80,8 @@ def test_get_all_budgets(client, add_budget, add_user):
     )
     response = client.get("/api/budgets/")
     assert response.status_code == 200
-    assert response.data["results"][0]["name"] == budget_one.name
-    assert response.data["results"][1]["name"] == budget_two.name
+    assert response.data["results"][0]["name"] == budget_two.name
+    assert response.data["results"][1]["name"] == budget_one.name
 
 
 @pytest.mark.django_db

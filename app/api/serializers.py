@@ -72,4 +72,6 @@ class TransactionSerializer(serializers.ModelSerializer):
             "id",
             "created_at",
             "updated_at",
+            "owner",
         )
+    

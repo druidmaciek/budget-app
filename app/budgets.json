@@ -310,7 +310,7 @@
             "name": "Taxes",
             "updated_at": "2022-01-07T14:06:51.542000Z",
             "budget": 1,
-            "category": "tax",
+            "category": "taxes",
             "type": "expense",
             "amount": -350000,
             "owner": 1

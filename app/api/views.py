@@ -5,6 +5,8 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.filters import SearchFilter
+
 
 from .serializers import BudgetSerializer, LogInSerializer, UserSerializer, TransactionSerializer
 from .models import Transaction, Budget
@@ -48,8 +50,9 @@ class TransactionViewSet(ModelViewSet):
     serializer_class = TransactionSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = TransactionsResultsSetPagination
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ["type", "category", "budget"]
+    search_fields = ['name']
 
     def get_queryset(self):
         return Transaction.objects.filter(owner=self.request.user)

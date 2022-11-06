@@ -49,7 +49,7 @@ class TransactionViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
     pagination_class = TransactionsResultsSetPagination
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["type", "category"]
+    filterset_fields = ["type", "category", "budget"]
 
     def get_queryset(self):
         return Transaction.objects.filter(owner=self.request.user)

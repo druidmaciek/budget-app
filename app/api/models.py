@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import Sum
 
 
 class CustomUser(AbstractUser):
@@ -28,6 +29,11 @@ class Budget(models.Model):
     def members_count(self):
         count = self.members.count() + 1
         return f"{count} member{'s' if count != 1 else ''}"
+    
+    @property 
+    def balance(self) -> int:
+        return self.transactions.aggregate(Sum('amount'))['amount__sum']
+
 
 
 class Transaction(models.Model):
@@ -55,5 +61,4 @@ class Transaction(models.Model):
     )
 
     def __str__(self):
-        expense_type = "-" if self.type == "expense" else "+"
-        return f"{self.name} ({expense_type}{(self.amount/100):.2f})"
+        return f"{self.name} ({(self.amount/100):.2f})"

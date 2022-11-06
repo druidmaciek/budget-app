@@ -17,14 +17,14 @@ def test_add_transaction(client, add_user, add_budget):
             "name": "Rent",
             "category": "rent",
             "type": "expense",
-            "amount": 200000,
+            "amount": -200000,
             "budget": budget.id,
         },
         content_type="application/json",
     )
     assert response.status_code == 201
     assert response.data["name"] == "Rent"
-    assert response.data["amount"] == 200000
+    assert response.data["amount"] == -200000
     assert response.data["type"] == "expense"
     assert response.data["budget"] == budget.id
     assert response.data["owner"] == user.id
@@ -40,7 +40,7 @@ def test_get_all_transactions(client, add_budget, add_user, add_transaction):
     budget = add_budget(
         name="My Family Budget", description="our budget", owner=user
     )
-    transaction_one = add_transaction(name="rent", type="expense", category="rent", budget=budget, amount=200000)
+    transaction_one = add_transaction(name="rent", type="expense", category="rent", budget=budget, amount=-200000)
     transaction_two = add_transaction(name="salary", type="income", category="salary", budget=budget, amount=500000)
     
     response = client.get("/api/transactions/")

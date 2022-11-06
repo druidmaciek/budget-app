@@ -22,13 +22,13 @@ def test_transaction_model(add_budget):
     budget = add_budget(name="My Family Budget", description="Our Budget")
     transaction = Transaction(
         name="Rent for Apartment",
-        amount=200000,
+        amount=-200000,
         category="rent",
         budget=budget,
         type="expense",
     )
     assert transaction.name == "Rent for Apartment"
-    assert transaction.amount == 200000
+    assert transaction.amount == -200000
     assert transaction.category == "rent"
     assert transaction.budget == budget
     assert transaction.type == "expense"

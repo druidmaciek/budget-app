@@ -158,7 +158,8 @@
             "budget": 1,
             "category": "salary",
             "type": "income",
-            "amount": 1000000
+            "amount": 1000000,
+            "owner": 1
         }
     },
     {
@@ -171,7 +172,8 @@
             "budget": 1,
             "category": "Rent",
             "type": "expense",
-            "amount": 200000
+            "amount": -200000,
+            "owner": 1
         }
     }
 ]

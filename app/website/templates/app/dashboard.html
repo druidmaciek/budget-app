@@ -34,9 +34,10 @@
         <div class="flex-shrink-0 flex items-center justify-center w-16 bg-red-400 text-white text-xl font-medium rounded-l-md">💰</div>
         <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
           <div class="flex-1 px-4 py-2 text-sm truncate">
-            <a x-text="budget.name" href="#" class="font-medium text-gray-900 hover:text-gray-600"></a>
+            <a x-text="budget.name" :href="`/budget/${budget.id}/`" class="font-medium text-gray-900 hover:text-gray-600"></a>
             <p class="text-gray-500" x-text="'Owner: ' + budget.owner.username"></p>
             <p class="text-gray-500" x-text="budget.members_count"></p>
+            <p class="text-gray-500" x-text="`Balance: ${(budget.balance/100).toFixed(2)}`"></p>
           </div>
         </div>
       </li>
@@ -54,7 +55,7 @@
 {% block alpine %}
 
 <script>
-  const pageSize = 4; // TODO change later, hide next/prev buttons when there is no pages
+  const pageSize = 8; // TODO: hide next/prev buttons when there is no pages
   const calculatePagesCount = (totalCount) => {
     // we suppose that if we have 0 items we want 1 empty page
     return totalCount < pageSize ? 1 : Math.ceil(totalCount / pageSize);

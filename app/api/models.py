@@ -45,6 +45,7 @@ class Transaction(models.Model):
         ("travel", "Travel"),
         ("other income", "Other Income"),
         ("salary", "Salary"),
+        ("other", "Other"),
     )
     TYPES = (("expense", "Expense"), ("income", "Income"))
     budget = models.ForeignKey(

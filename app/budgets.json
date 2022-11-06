@@ -175,5 +175,285 @@
             "amount": -200000,
             "owner": 1
         }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 3,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "New Shoes",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "shopping",
+            "type": "expense",
+            "amount": -20000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 4,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Groceries",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "shopping",
+            "type": "expense",
+            "amount": -15000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 5,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Sold Stocks",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "other income",
+            "type": "income",
+            "amount": 250000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 6,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Coffe and Cake",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "eating out",
+            "type": "expense",
+            "amount": -2000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 7,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Dinner with Wife",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "eating out",
+            "type": "expense",
+            "amount": -35000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 8,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Mechanic",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "other",
+            "type": "expense",
+            "amount": -150000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 9,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Wife's Salary",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "salary",
+            "type": "income",
+            "amount": 1600000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 10,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Dentist visit",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "other",
+            "type": "expense",
+            "amount": -25000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 11,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Veterinary",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "other",
+            "type": "expense",
+            "amount": -20000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 12,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Taxes",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "tax",
+            "type": "expense",
+            "amount": -350000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 13,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Refund from booking.com",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "other",
+            "type": "income",
+            "amount": 300000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 14,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Food Delivery",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "eating out",
+            "type": "expense",
+            "amount": -5500,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 15,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "New Clothes",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "shopping",
+            "type": "expense",
+            "amount": -50000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 16,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Food Delivery",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "eating out",
+            "type": "expense",
+            "amount": -7500,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 17,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Uber to the dentist",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "travel",
+            "type": "expense",
+            "amount": -3000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 18,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Bonus from job",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "other",
+            "type": "income",
+            "amount": 100000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 19,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Weekend Trip to Italy",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "travel",
+            "type": "expense",
+            "amount": -350000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 20,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Food Delivery",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "eating out",
+            "type": "expense",
+            "amount": -3000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 21,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Groceries",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "shopping",
+            "type": "expense",
+            "amount": -20000,
+            "owner": 1
+        }
+    },
+    {
+        "model": "api.transaction",
+        "pk": 22,
+        "fields": {
+            "created_at": "2022-01-07T14:06:51.542000Z",
+            "name": "Coffe",
+            "updated_at": "2022-01-07T14:06:51.542000Z",
+            "budget": 1,
+            "category": "eating out",
+            "type": "expense",
+            "amount": -1000,
+            "owner": 1
+        }
     }
 ]

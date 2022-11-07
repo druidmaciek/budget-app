@@ -40,5 +40,5 @@ def budget_detail(request, pk):
 @login_required
 def budget_edit(request, pk):
     return render(
-        request, "app/budget/edit_form.html", {"users": get_user_model().objects.all()}
+        request, "app/budget/edit_form.html", {"users": get_user_model().objects.all(), "id": pk}
     )

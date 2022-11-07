@@ -118,7 +118,6 @@ def test_update_budget(client, add_budget):
         {
             "name": "Our Family Budget",
             "description": "our budget",
-            "owner": budget.owner.id,
             "members": [],
         },
         content_type="application/json",

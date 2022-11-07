@@ -94,7 +94,7 @@
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-text="transaction.type"></td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-text="(transaction.amount/100).toFixed(2)"></td>
                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <a href="#" class="text-red-600 hover:text-red-900">Remove</a>
+                      <button @click="deleteTransaction(transaction.id)" type="button" class="text-red-600 hover:text-red-900">Remove</button>
                     </td>
                   </tr>
                   </template>
@@ -155,6 +155,20 @@
                     .then(function (response) {
                     // handle success
                     window.location.replace("/");
+                    })
+                    .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                    });
+            },
+            deleteTransaction(ID) {
+              let self = this;
+              axios.delete(`/api/transactions/${ID}/`, {
+                headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+            })
+                    .then(function (response) {
+                    // handle success
+                    self.loadBudget({{id}})
                     })
                     .catch(function (error) {
                     // handle error

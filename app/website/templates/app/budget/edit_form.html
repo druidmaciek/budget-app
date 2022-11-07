@@ -29,19 +29,7 @@
                 </div>
               </div>
 
-              <div>
-                <label for="about" class="block text-sm font-medium text-gray-700">Members</label>
-                <div class="">
-                    <select x-model="budget.members" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm" multiple>
-                        <template x-for="user in users">
-                          <option :value="user.id" x-text="`${user.first_name} ${user.last_name} (${user.username})`"></option>
-                        </template>
-                        
-                    </select>
-                </div>
-
-              </div>
-
+            
                 <p class="text-red-500" x-text="error"></p>              
   
               
@@ -63,13 +51,6 @@
     function form() {
         return {
             error: '',
-            users: [
-              {% for user in users %}
-              {% if user != request.user %}
-              {first_name: '{{user.first_name}}', last_name: '{{user.last_name}}', username: '{{user.username}}', id: {{user.id}}},
-              {% endif %}
-              {% endfor %}
-            ],
             budget: {name: "", description: "", members: []},
             loadBudget(ID) {
                 
